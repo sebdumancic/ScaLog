@@ -33,6 +33,9 @@ dependencies {
     // Parser combinators
     implementation 'org.scala-lang.modules:scala-parser-combinators_2.11:1.0.2'
     
+    //Logging
+    compile group: 'com.outr', name: 'scribe_2.12', version: '2.7.3'
+    
     // Missing libraries
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     
