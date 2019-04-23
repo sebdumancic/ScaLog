@@ -1,6 +1,7 @@
 package ScalaLogic.language.commons
 
-case class Variable(override val name: String, override val sort: Sort) extends SimpleTerm(name, sort) {
+case class Variable(override protected val name: String,
+                    override protected val sort: Sort) extends SimpleTerm(name, sort) {
 
   assert(name.head.isUpper, s"Variables should be uppercase ($name)")
 

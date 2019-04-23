@@ -1,6 +1,7 @@
 package ScalaLogic.language.commons
 
-case class Constant(override val name: String, override val sort: Sort) extends SimpleTerm(name, sort) {
+case class Constant(override protected val name: String,
+                    override protected val sort: Sort) extends SimpleTerm(name, sort) {
 
   assert(name.head.isLower, s"Constants should be lowercase ($name)")
   sort.addElement(this)

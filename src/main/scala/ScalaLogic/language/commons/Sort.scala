@@ -2,19 +2,19 @@ package ScalaLogic.language.commons
 
 class Sort(name: String) {
 
-  val elements: collection.mutable.Set[Constant] = collection.mutable.Set()
+  val elements: collection.mutable.Set[Term] = collection.mutable.Set()
 
-  def addElement(element: Constant): Sort.this.elements.type = {
+  def addElement(element: Term): Sort.this.elements.type = {
     elements += element
   }
 
-  def contains(element: Constant): Boolean = {
+  def contains(element: Term): Boolean = {
     elements contains element
   }
 
   def getName: String = name
 
-  def getElements: collection.mutable.Set[Constant] = { elements }
+  def getElements: Set[Term] = { elements.toSet }
 
   def size: Int = elements.size
 

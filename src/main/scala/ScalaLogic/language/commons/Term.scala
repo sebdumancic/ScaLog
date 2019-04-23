@@ -16,13 +16,24 @@ trait Named {
 }
 
 trait WithArguments {
-  protected val arguments: Seq[SimpleTerm]
+  protected val arguments: Seq[Term]
 
   require(arguments.nonEmpty, s"Cannot pass an empty list as argument")
 
-  def getArguments: Seq[SimpleTerm] = arguments
+  def getArguments: Seq[Term] = arguments
 
   def getArgumentSort: Seq[Sort] = arguments.map(_.getSort)
+
+  def isGround: Boolean = !arguments.exists {
+    case x: Variable => true
+    case x: Structure => x.vars.nonEmpty
+    case _ => false
+  }
+
+  def vars: Seq[Variable] = arguments.collect({
+    case x: Variable => Seq(x)
+    case x: Structure => x.vars
+  }).flatten
 
 }
 
@@ -46,15 +57,18 @@ trait Weight {
   def getWeight: Double = weight
 }
 
-abstract class Term(val name: String) extends Named {
+abstract class Term(override protected val name: String,
+                    override protected val sort: Sort) extends Named with WithSort {
 
 }
 
-abstract class SimpleTerm(override val name: String,
-                          override val sort: Sort) extends Term(name) with WithSort {
+abstract class SimpleTerm(override protected val name: String,
+                          override protected val sort: Sort) extends Term(name, sort) {
 
 }
 
-abstract class ComplexTerm(name: String, arguments: Term*) extends Term(name) with WithArguments {
+abstract class ComplexTerm(override protected val name: String,
+                           override protected val sort: Sort,
+                           override protected val arguments: Term*) extends Term(name, sort) with WithArguments {
 
 }

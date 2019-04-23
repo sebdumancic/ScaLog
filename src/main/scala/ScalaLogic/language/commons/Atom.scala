@@ -2,15 +2,9 @@ package ScalaLogic.language.commons
 
 import ScalaLogic.language.lp.Clause
 
-case class Atom(predicate: Predicate, arguments: SimpleTerm*) extends Formula with WithArguments {
+case class Atom(predicate: Predicate, arguments: Term*) extends Formula with WithArguments {
 
   def getPredicate: Predicate = predicate
-
-  def isGround: Boolean = getArguments.forall(_.isInstanceOf[Constant])
-
-
-  def vars: Seq[Variable] = arguments.collect { case x: Variable => x }
-
 
   def :-(body: Atom*): Clause = Clause(this, body: _*)
 
