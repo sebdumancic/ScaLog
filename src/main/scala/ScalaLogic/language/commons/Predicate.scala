@@ -10,7 +10,7 @@ class Predicate(name: String, argumentSorts: Sort*) {
 
   def getSignature: String = s"$name/$arity"
 
-  def apply(args: SimpleTerm*): Atom = {
+  def apply(args: Term*): Atom = {
     assert(args.lengthCompare(argumentSorts.length) == 0, s"Expecting $arity argument, received ${args.length}")
     assert(args.map(_.getSort) == argumentSorts,
       s"Expected the following types: ${argumentSorts.mkString(",")}, received: ${args.mkString(",")}")
