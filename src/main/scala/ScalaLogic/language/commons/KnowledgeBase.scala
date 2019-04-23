@@ -22,12 +22,12 @@ class KnowledgeBase {
     rules add rule
   }
 
-  def getFacts: Set[Atom] = {
-    facts.foldLeft(Set[Atom]())((acc, t) => acc ++ t._2)
+  def getFacts: Seq[Atom] = {
+    facts.foldLeft(Seq[Atom]())((acc, t) => acc ++ t._2)
   }
 
-  def getRules: Set[Clause] = {
-    rules.toSet
+  def getRules: Seq[Clause] = {
+    rules.toSeq
   }
 
   def prepareFile(path: String): Unit = {
