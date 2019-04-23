@@ -57,9 +57,9 @@ class Language extends FunSpec with Matchers {
       val clause2 = head :- (Seq(friendsAtom, smokesAtom): _*)
       val clause3 = head :- friendsAtom :^ smokesAtom
 
-      clause2.toString should be ("smokes(X) :- friends(X,Y),smokes(Y).")
-      clause1.toString should be ("smokes(X) :- friends(X,Y).")
-      clause3.toString should be ("smokes(X) :- friends(X,Y),smokes(Y).")
+      clause2.toString should be ("smokes(X) :- friends(X,Y),smokes(Y)")
+      clause1.toString should be ("smokes(X) :- friends(X,Y)")
+      clause3.toString should be ("smokes(X) :- friends(X,Y),smokes(Y)")
 
     }
   }
