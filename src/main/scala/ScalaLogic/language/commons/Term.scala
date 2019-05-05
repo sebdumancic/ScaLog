@@ -39,6 +39,13 @@ trait WithArguments {
     case x: Structure => x.vars
   }).flatten
 
+  def _substitute(subs: Map[Term, Term]): Seq[Term] = {
+    arguments.map {
+      case t: Term if subs.contains(t) => subs(t)
+      case t: Term => t
+    }
+  }
+
 }
 
 
