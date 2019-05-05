@@ -4,7 +4,7 @@ import java.io.PrintWriter
 
 import ScalaLogic.language.lp.Clause
 
-class KnowledgeBase {
+class Interpretation {
 
   val facts: collection.mutable.Map[Predicate, collection.mutable.Set[Atom]] = collection.mutable.Map()
   val rules: collection.mutable.Set[Clause] = collection.mutable.Set()

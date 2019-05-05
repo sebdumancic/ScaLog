@@ -1,6 +1,6 @@
 package ScalaLogic
 
-import ScalaLogic.language.commons.{Constant, KnowledgeBase, Predicate, Sort, Variable}
+import ScalaLogic.language.commons.{Constant, Interpretation, Predicate, Sort, Variable}
 import ScalaLogic.solvers.lp.SWIPL
 import org.junit.runner.RunWith
 import org.scalatest.{FunSpec, Matchers}
@@ -28,7 +28,7 @@ class Solvers extends FunSpec with Matchers {
     val friends_bobalice = friends(Seq(alice, bob): _*)
     val smokes_bob = smokes(bob)
 
-    val kb = new KnowledgeBase()
+    val kb = new Interpretation()
     kb.addFact(friends_bobalice)
     kb.addFact(smokes_bob)
     kb.addRule(clause)
